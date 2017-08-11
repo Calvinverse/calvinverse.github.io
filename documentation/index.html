@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-        <title>Calvinverse - Home</title>
+        <title>Calvinverse - Documentation</title>
         <link href="/assets/css/mermaid.css" rel="stylesheet">
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -31,9 +31,9 @@
 
         
     </head>
-    <body class="hold-transition wyam layout-boxed layout-top-nav no-gutter">    
+    <body class="hold-transition wyam layout-boxed  ">    
         <div class="top-banner"></div>
-        <div class="wrapper">
+        <div class="wrapper with-container">
             <!-- Header -->
             <header class="main-header">   
                      
@@ -43,6 +43,10 @@
                          
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
                                         
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -54,7 +58,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
-                                    <li><a href="/documentation">Documentation</a></li>
+                                    <li class="active"><a href="/documentation">Documentation</a></li>
         <li><a href="/resources">Resources</a></li>
         <li><a href="/blog">Blog</a></li>
  
@@ -67,9 +71,10 @@
             </header>
             
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar hidden">
+            <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
+        <div><p><a href="https://github.com/calvinverse/calvinverse.docs/tree/master/src/documentation/index.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -78,6 +83,11 @@
 
                     <ul class="sidebar-menu">
                         
+                <li><a href="/documentation/about">About</a></li>
+                <li><a href="/documentation/configuration">Configuration</a></li>
+                <li><a href="/documentation/getting-started">Getting Started</a></li>
+                <li><a href="/documentation/how-to-build">How To Build</a></li>
+                <li><a href="/documentation/setup">Setup</a></li>
 
                     </ul>
                 </section>                
@@ -89,47 +99,52 @@
 
 
 
-<div class="jumbotron">
-    <div class="container">
-        <h1>What is Calvinverse?</h1>
-        <p>
-            Provides a number of repositories that contain all the necessary code to create a
-            build environment based on the idea of immutable infrastructure.
-        </p>
-    </div>
-</div>
+	<section class="content-header">
+		<h1>Documentation</h1>
+	</section>
+	<section class="content">
+		<p>The <a href="https://github.com/Calvinverse">Calvinverse</a> organization provides a number of repositories that contain all the necessary code to create a
+<a href="https://en.wikipedia.org/wiki/Build_automation">build environment</a> based on the idea of <a href="https://martinfowler.com/bliki/ImmutableServer.html">immutable infrastructure</a>.</p>
+<p>The repositories describe resources different resources which are part of a build environment, like:</p>
+<ul>
+<li>A <a href="../resources/build-controller.html">build controller</a>: This resource collects <a href="">build jobs</a> and sends them to the
+build executors which process the jobs.</li>
+<li>A <a href="">build executor</a>: This resource processes a build job and executes the actual
+build.</li>
+</ul>
+<p>The different resources can be combined into a relatively simple or small build system which may consist of only one or two machines, one for the build controller and one for the build executor, or they may be combined into a far more complicated environment
+which consist of many different services.</p>
+<p>The code in the repositories will either create a <a href="https://en.wikipedia.org/wiki/Hyper-V">Hyper-V</a> virtual machine image or
+a <a href="https://www.docker.com/">Docker</a> container. If however a different virtualization platform is desired changes can be made to the <a href="https://packer.io">Packer</a> configurations relatively easy to change the type of images that are generated.</p>
+<h2 id="available-resources">Available resources</h2>
+<p>The Calvinverse organisation contains a number of repositories with
+<a href="../resources">resources</a> that can be used to create a build system. These
+resources fall into one of the following groups:</p>
+<ul>
+<li><a href="../resources/category-base.html">Base resources</a> - Resources on which other resources are based.
+For instance there are resources that define a VM with just an operating system
+installed and prepared. These base VM images will then be used by other resources
+as their base, thereby reducing the build times for these more advanced resources.</li>
+<li><a href="../resources/category-build.html">Build resources</a> - Resources which define parts of the build
+infrastructure, e.g. the build controller or build executors.</li>
+<li><a href="../resources/category-support.html">Supporting resources</a> - Resources which define parts of the
+infrastructure which support the work of the build resources, e.g. web servers.</li>
+</ul>
+<p>In general at least some of the base and build resources are needed to build a functional
+build system. The other resources may be required if a larger build system needs to be
+created.</p>
+<h2 id="setup-and-configuration">Setup and configuration</h2>
+<ul>
+<li><a href="getting-started.html">Getting started</a></li>
+<li><a href="how-to-build.html">How to build</a></li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h2 id="contribution">Contribution</h2>
+<ul>
+<li><a href="about.html">About</a></li>
+</ul>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6">
-
-            <h3>Infrastructure as code</h3>
-            <p>
-                All infrastructure resources can be created from
-                <a href="https://en.wikipedia.org/wiki/Infrastructure_as_Code)">scripts and configuration files</a>
-                which are stored in source control.
-            </p>
-
-            <h3>Immutable infrastructure</h3>
-            <p>
-                The resources are designed to be created and configured once. Any changes to the
-                resource code will create a new resource. That way the new resource can be tested
-                and then be used to replace the old resource. If any issues still appear with the
-                new resource then the old one can be activated again in a quick roll-back process
-            </p>
-
-            <h3>Automated builds</h3>
-            <p>
-                All resources can be created with a standard build system. That way the resources
-                can be build using the same tooling as the applications. Thus providing fast feedback
-                and repeatable results.
-            </p>
-        </div>
-        <div class="col-sm-6 hidden-xs">
-            <img style="width: 100%;" src="/assets/img/screenshot.png" alt=""/>
-        </div>
-    </div>
-</div>
+	</section>
                 
             </div>           
             
