@@ -1,207 +1,184 @@
-﻿<!DOCTYPE html>
+﻿
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Calvinverse - Documentation</title>
-        <link href="/assets/css/mermaid.css" rel="stylesheet">
-        <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
-        <script src="/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>        
-        <script src="/assets/js/app.min.js"></script>         
-        <script src="/assets/js/highlight.pack.js"></script>   
-        <script src="/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/assets/js/mermaid.min.js"></script>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/scribbler-global.css" rel="stylesheet" />
+                <link href="/assets/css/scribbler-doc.css" rel="stylesheet" />
+
+        <meta name="application-name" content="Calvinverse" />
+        <meta name="msapplication-tooltip" content="Calvinverse" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Calvinverse - Documentation" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://calvinverse.github.io/documentation" />
+        <!-- TODO: More social graph meta tags -->
+
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-        <script src="/assets/js/html5shiv.min.js"></script>
-        <script src="/assets/js/respond.min.js"></script>
-        <![endif]-->  
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
 
-        
+        <!-- Our scripts -->
+<script src="/assets/js/script.js"></script><script src="/assets/js/scribbler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=GOOGLE_API_KEY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'GOOGLE_API_KEY');
+</script>
+-->
+
     </head>
-    <body class="hold-transition wyam layout-boxed  ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/" class="logo">
-                            <span>Calvinverse</span>
-                </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-right"></i>
-                        </a>
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
-                    </div>
-            
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/documentation">Documentation</a></li>
-        <li><a href="/resources">Resources</a></li>
-        <li><a href="/blog">Blog</a></li>
- 
-                        </ul>       
-                    </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
-            
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar ">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-        <div><p><a href="https://github.com/calvinverse/calvinverse.docs/tree/master/src/documentation/index.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <body>
+        <nav>
+            <div class="logo"></div>
+            <div class="menu">
+                <ul>
+            <li class="inactive" >
+                <a href="/">Home</a>
+            </li>
+            <li class="active" >
+                Documentation
+            </li>
+            <li class="inactive" >
+                <a href="/resources">Resources</a>
+            </li>
+</ul>
+            </div>
+        </nav>
 
-                </section>
-                <section class="sidebar">                    
-                    
 
-                    <ul class="sidebar-menu">
-                        
+        <div class="wrapper">
+                    <!-- Left side column. contains the logo and sidebar -->
+                    <aside class="doc__nav">
+                        <section>
+                            
+                            
+                            <ul>
+
                 <li><a href="/documentation/about">About</a></li>
                 <li><a href="/documentation/configuration">Configuration</a></li>
-                <li><a href="/documentation/getting-started">Getting Started</a></li>
-                <li><a href="/documentation/how-to-build">How To Build</a></li>
-                <li><a href="/documentation/setup">Setup</a></li>
+                <li><a href="/documentation/setup">Environment setup</a></li>
+                <li><a href="/documentation/environments">Environments - What and why?</a></li>
+                <li><a href="/documentation/examples">Examples</a></li>
+                <li><a href="/documentation/getting-started">Getting started</a></li>
+                <li><a href="/documentation/how-to-build">How to build</a></li>
+                            </ul>
+                            
+                        </section>
+                    </aside>
 
-                    </ul>
-                </section>                
-            </aside>
-            
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 
-
-
-
-	<section class="content-header">
-		<h1>Documentation</h1>
-	</section>
-	<section class="content">
-		<p>The <a href="https://github.com/Calvinverse">Calvinverse</a> organization provides a number of repositories that contain all the necessary code to create a
-<a href="https://en.wikipedia.org/wiki/Build_automation">build environment</a> based on the idea of <a href="https://martinfowler.com/bliki/ImmutableServer.html">immutable infrastructure</a>.</p>
-<p>The repositories describe resources different resources which are part of a build environment, like:</p>
+<div>
+    <p>The <a href="https://github.com/Calvinverse">Calvinverse</a> organization provides a number of repositories that
+contain all the necessary code to create a <a href="https://en.wikipedia.org/wiki/Build_automation">build environment</a>
+based on the idea of <a href="https://martinfowler.com/bliki/ImmutableServer.html">immutable infrastructure</a>. In
+other words resources, e.g. virtual machines or containers, are created with all the required applications
+and tooling in place. Once a specific version of a resources is created it is never be changed, neither
+in the resource form or when deployed as an instance. If changes are required then a new version of the
+resource is created, tested and released. Once the resource is released new instances based on this
+resource can be deployed.</p>
+<p>The repositories describe resources different resources which are needed to create a fully functioning
+build <a href="environments.html">environment</a>, for instance:</p>
 <ul>
-<li>A <a href="../resources/build-controller.html">build controller</a>: This resource collects <a href="">build jobs</a> and sends them to the
-build executors which process the jobs.</li>
-<li>A <a href="">build executor</a>: This resource processes a build job and executes the actual
-build.</li>
+<li>A <a href="../resources/build-controller.html">build controller</a>: This resource collects build jobs
+and sends them to the build executors which process the jobs.</li>
+<li>A <a href="../resources/build-agent.html">build executor</a>: This resource processes a build job and executes
+the actual build.</li>
+<li>An <a href="../resources/artefact-storage.html">artefact repository</a>: This resource stores artefacts that
+were created during a build and allows other builds or processes to consume these artefacts.</li>
 </ul>
-<p>The different resources can be combined into a relatively simple or small build system which may consist of only one or two machines, one for the build controller and one for the build executor, or they may be combined into a far more complicated environment
-which consist of many different services.</p>
-<p>The code in the repositories will either create a <a href="https://en.wikipedia.org/wiki/Hyper-V">Hyper-V</a> virtual machine image or
-a <a href="https://www.docker.com/">Docker</a> container. If however a different virtualization platform is desired changes can be made to the <a href="https://packer.io">Packer</a> configurations relatively easy to change the type of images that are generated.</p>
+<p>The different resources can be combined into a <a href="example-minimal-build-system.html">relatively simple</a>
+or small build system which may consist of only a few machines, or they may be combined into a far
+more <a href="example-complete-build-system.html">complicated environment</a> which consists of many different
+services for those cases where the build workflow is more complex.</p>
+<p>The code in the repositories will either create a <a href="https://en.wikipedia.org/wiki/Hyper-V">Hyper-V</a>
+virtual machine image or a <a href="https://www.docker.com/">Docker</a> container. However a different
+virtualization platform is desired changes can be made to the <a href="https://packer.io">Packer</a> configurations
+relatively easy to change the type of images that are generated.</p>
 <h2 id="available-resources">Available resources</h2>
-<p>The Calvinverse organisation contains a number of repositories with
-<a href="../resources">resources</a> that can be used to create a build system. These
-resources fall into one of the following groups:</p>
+<p>The Calvinverse organisation contains a number of repositories with <a href="../resources">resources</a> that
+can be used to create a build system. These resources fall into one of the following groups:</p>
 <ul>
 <li><a href="../resources/category-base.html">Base resources</a> - Resources on which other resources are based.
-For instance there are resources that define a VM with just an operating system
-installed and prepared. These base VM images will then be used by other resources
-as their base, thereby reducing the build times for these more advanced resources.</li>
+For instance there are resources that define a VM with just an operating system installed and
+prepared. These base VM images will then be used by other resources as their base, thereby reducing
+the build times for these more advanced resources because the base resource provides an up to date
+operating system install and all the common applications.</li>
 <li><a href="../resources/category-build.html">Build resources</a> - Resources which define parts of the build
 infrastructure, e.g. the build controller or build executors.</li>
 <li><a href="../resources/category-support.html">Supporting resources</a> - Resources which define parts of the
-infrastructure which support the work of the build resources, e.g. web servers.</li>
+infrastructure which support the work of the build resources, e.g. artefact servers or logging
+and metrics services.</li>
 </ul>
 <p>In general at least some of the base and build resources are needed to build a functional
 build system. The other resources may be required if a larger build system needs to be
 created.</p>
-<h2 id="setup-and-configuration">Setup and configuration</h2>
-<ul>
-<li><a href="getting-started.html">Getting started</a></li>
-<li><a href="how-to-build.html">How to build</a></li>
-</ul>
-<h2 id="examples">Examples</h2>
-<h2 id="contribution">Contribution</h2>
-<ul>
-<li><a href="about.html">About</a></li>
-</ul>
+<p>In order to <a href="getting-started.html">get started</a> creating a build system the first thing to do
+is to <a href="how-to-build.html">create</a> the resources that will make up the build system. Once the
+resource images have been created one needs to decide on the way the resources are
+going to be <a href="setup.html">assembled</a> into a functioning build environment. Part of this process
+involves storing the <a href="configuration.html">global configurations</a> for all the resources in a
+sensible way.</p>
 
-	</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
-        </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
-                <div>
-    <p>
-        Generated by <a href="https://wyam.io">Wyam</a> on Sat, 19 Aug 2017 19:03:53 GMT
-
- from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/99bf6a6e041f06fae38925fab90754194102b06d">99bf6a6e041f06fae38925fab90754194102b06d</a> at version 0.1.4.    </p>
 </div>
-            </footer>
-        </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
-            $(document).load(function() {
-                mermaid.initialize(
-                {
-                    flowchart:
-                    {
-                        htmlLabels: false,
-                        useMaxWidth:false
-                    }
-                });  
-                mermaid.init(undefined, ".mermaid")
-                $('svg').addClass('img-responsive');
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-            hljs.initHighlightingOnLoad();
 
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
-            });
-        </script>
+            </div>
+        </div>
+
+
+        <footer>
+            <div id="footer">
+    <div id="fbox1">
+        <h2>Related</h2>
+        <ul>
+            <li><a href="https://github.com/Calvinverse"><i class="fa fa-github"></i> GitHub</a></li>
+        </ul>
+    </div>
+    <div id="fbox2">
+        <h2 id="copyright">Copyright</h2>
+        <p>Copyright (c) 2019 <a href="/">Petrik van der Velde</a>. All rights reserved.</p>
+
+        <h2 id="disclaimer">Disclaimer</h2>
+        <p>The opinions expressed herein are my own personal opinions and do not represent my employer's view in any way.</p>
+    </div>
+    <div id="fbox3">
+        <h2 id="media">Media</h2>
+        <p><a href="/feed.rss"><img src="/assets/img/feed.png" alt="RSS feed"></a></p>
+    </div>
+</div>
+<div id="copyright">
+    <p>
+        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Sun, 15 Dec 2019 02:14:26 GMT
+
+ from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/888e58a4d3cc255f3e68735f7d00de6b33679860" class="link link--light">888e58a4d3cc255f3e68735f7d00de6b33679860</a> at version 0.1.5.    </p>
+</div>
+        </footer>
     </body>
 </html>

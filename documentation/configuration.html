@@ -1,110 +1,107 @@
-﻿<!DOCTYPE html>
+﻿
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Calvinverse - Configuration</title>
-        <link href="/assets/css/mermaid.css" rel="stylesheet">
-        <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
-        <script src="/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>        
-        <script src="/assets/js/app.min.js"></script>         
-        <script src="/assets/js/highlight.pack.js"></script>   
-        <script src="/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/assets/js/mermaid.min.js"></script>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/scribbler-global.css" rel="stylesheet" />
+                <link href="/assets/css/scribbler-doc.css" rel="stylesheet" />
+
+        <meta name="application-name" content="Calvinverse" />
+        <meta name="msapplication-tooltip" content="Calvinverse" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Calvinverse - Configuration" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://calvinverse.github.io/documentation/configuration" />
+        <!-- TODO: More social graph meta tags -->
+
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-        <script src="/assets/js/html5shiv.min.js"></script>
-        <script src="/assets/js/respond.min.js"></script>
-        <![endif]-->  
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
 
-        
+        <!-- Our scripts -->
+<script src="/assets/js/script.js"></script><script src="/assets/js/scribbler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=GOOGLE_API_KEY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'GOOGLE_API_KEY');
+</script>
+-->
+
     </head>
-    <body class="hold-transition wyam layout-boxed  ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/" class="logo">
-                            <span>Calvinverse</span>
-                </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-right"></i>
-                        </a>
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
-                    </div>
-            
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/documentation">Documentation</a></li>
-        <li><a href="/resources">Resources</a></li>
-        <li><a href="/blog">Blog</a></li>
- 
-                        </ul>       
-                    </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
-            
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar ">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-        <div><p><a href="https://github.com/calvinverse/calvinverse.docs/tree/master/src/documentation/configuration.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <body>
+        <nav>
+            <div class="logo"></div>
+            <div class="menu">
+                <ul>
+            <li class="inactive" >
+                <a href="/">Home</a>
+            </li>
+            <li class="active" >
+                Documentation
+            </li>
+            <li class="inactive" >
+                <a href="/resources">Resources</a>
+            </li>
+</ul>
+            </div>
+        </nav>
 
-                </section>
-                <section class="sidebar">                    
-                    
 
-                    <ul class="sidebar-menu">
-                        
+        <div class="wrapper">
+                    <!-- Left side column. contains the logo and sidebar -->
+                    <aside class="doc__nav">
+                        <section>
+                            
+                            
+                            <ul>
+
                 <li><a href="/documentation/about">About</a></li>
                 <li class="selected"><a href="/documentation/configuration">Configuration</a></li>
-                <li><a href="/documentation/getting-started">Getting Started</a></li>
-                <li><a href="/documentation/how-to-build">How To Build</a></li>
-                <li><a href="/documentation/setup">Setup</a></li>
+                <li><a href="/documentation/setup">Environment setup</a></li>
+                <li><a href="/documentation/environments">Environments - What and why?</a></li>
+                <li><a href="/documentation/examples">Examples</a></li>
+                <li><a href="/documentation/getting-started">Getting started</a></li>
+                <li><a href="/documentation/how-to-build">How to build</a></li>
+                            </ul>
+                            
+                        </section>
+                    </aside>
 
-                    </ul>
-                </section>                
-            </aside>
-            
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 
-
-
-
-	<section class="content-header">
-		<h1>Configuration</h1>
-	</section>
-	<section class="content">
-		<ul>
-<li><a href="">Calvinverse.Infrastructure</a> has some standard configuration files</li>
+<div>
+    <p><strong>Status: Thoughts only, needs proper formatting</strong></p>
+<p><a href="https://github.com/Calvinverse/calvinverse.docs/issues/6">Issue #6</a></p>
+<h1 id="configure-an-environment">Configure an environment</h1>
+<ul>
+<li><a href="https://github.com/Calvinverse/calvinverse.infrastructure">Calvinverse.Infrastructure</a>
+has some standard configuration files</li>
 <li>The defaults are baked into the resources, but not everything can be
 configured in source because some things depend on the way the infrastructure
 is set up. Those will have to be configured when the resources are created.</li>
@@ -115,65 +112,55 @@ or via environment variables</li>
 <li>Configurations which need to be available on service start (but not on resource
 start) can also be provided through the <a href="">Consul K-V store</a></li>
 </ul>
+<p>Note: Provisioning is hard to do automatically and right. All resources are
+designed to be environment-independent,
+i.e. they only have standard configurations encoded, ones that are valid for all
+environments. In order to get configurations that are environment specific in them
+you need a way for the resource to know where to fetch those from, e.g.
+a web address or the Consul K-V store. However in order to tell the resource
+what the configuration store is you need to provide an environment specific
+configuration when the resource is first initialized, i.e. the initial
+configuration. It's this initial configuration that is tricky. For containers
+you can pass an environment variable, for VMs you can use an ISO file</p>
+<p>In calvinverse all resources assume that an ISO file (i.e. a CD / DVD) is mounted
+when the resource first boots (for VMs), or environment variables are set
+(for containers). These initial configurations only contain information on
+how to connect to the Consul cluster in the environment. Once connected
+all other configuration values can be obtained from the Consul K-V or the
+Vault secret store</p>
 
-	</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
-        </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
-                <div>
-    <p>
-        Generated by <a href="https://wyam.io">Wyam</a> on Sat, 19 Aug 2017 19:03:53 GMT
-
- from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/99bf6a6e041f06fae38925fab90754194102b06d">99bf6a6e041f06fae38925fab90754194102b06d</a> at version 0.1.4.    </p>
 </div>
-            </footer>
-        </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
-            $(document).load(function() {
-                mermaid.initialize(
-                {
-                    flowchart:
-                    {
-                        htmlLabels: false,
-                        useMaxWidth:false
-                    }
-                });  
-                mermaid.init(undefined, ".mermaid")
-                $('svg').addClass('img-responsive');
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-            hljs.initHighlightingOnLoad();
 
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
-            });
-        </script>
+            </div>
+        </div>
+
+
+        <footer>
+            <div id="footer">
+    <div id="fbox1">
+        <h2>Related</h2>
+        <ul>
+            <li><a href="https://github.com/Calvinverse"><i class="fa fa-github"></i> GitHub</a></li>
+        </ul>
+    </div>
+    <div id="fbox2">
+        <h2 id="copyright">Copyright</h2>
+        <p>Copyright (c) 2019 <a href="/">Petrik van der Velde</a>. All rights reserved.</p>
+
+        <h2 id="disclaimer">Disclaimer</h2>
+        <p>The opinions expressed herein are my own personal opinions and do not represent my employer's view in any way.</p>
+    </div>
+    <div id="fbox3">
+        <h2 id="media">Media</h2>
+        <p><a href="/feed.rss"><img src="/assets/img/feed.png" alt="RSS feed"></a></p>
+    </div>
+</div>
+<div id="copyright">
+    <p>
+        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Sun, 15 Dec 2019 02:14:26 GMT
+
+ from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/888e58a4d3cc255f3e68735f7d00de6b33679860" class="link link--light">888e58a4d3cc255f3e68735f7d00de6b33679860</a> at version 0.1.5.    </p>
+</div>
+        </footer>
     </body>
 </html>

@@ -6,7 +6,7 @@
         <meta name="description" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Calvinverse - Category Pipeline</title>
+        <title>Calvinverse - Environments - What and why?</title>
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <meta name="msapplication-tooltip" content="Calvinverse" />
         <meta name="msapplication-starturl" content="/" />
 
-        <meta property="og:title" content="Calvinverse - Category Pipeline" />
+        <meta property="og:title" content="Calvinverse - Environments - What and why?" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="http://calvinverse.github.io/resources/category-pipeline" />
+        <meta property="og:url" content="http://calvinverse.github.io/documentation/environments" />
         <!-- TODO: More social graph meta tags -->
 
 
@@ -61,11 +61,11 @@
             <li class="inactive" >
                 <a href="/">Home</a>
             </li>
-            <li class="inactive" >
-                <a href="/documentation">Documentation</a>
-            </li>
             <li class="active" >
-                Resources
+                Documentation
+            </li>
+            <li class="inactive" >
+                <a href="/resources">Resources</a>
             </li>
 </ul>
             </div>
@@ -80,11 +80,13 @@
                             
                             <ul>
 
-                <li><a href="/resources/build-controller">Build Controller</a></li>
-                <li><a href="/resources/category-base">Category Base</a></li>
-                <li><a href="/resources/category-diagnostics-logs">Category Diagnostics Logs</a></li>
-                <li class="selected"><a href="/resources/category-pipeline">Category Pipeline</a></li>
-                <li><a href="/resources/category-support">Category Support</a></li>
+                <li><a href="/documentation/about">About</a></li>
+                <li><a href="/documentation/configuration">Configuration</a></li>
+                <li><a href="/documentation/setup">Environment setup</a></li>
+                <li class="selected"><a href="/documentation/environments">Environments - What and why?</a></li>
+                <li><a href="/documentation/examples">Examples</a></li>
+                <li><a href="/documentation/getting-started">Getting started</a></li>
+                <li><a href="/documentation/how-to-build">How to build</a></li>
                             </ul>
                             
                         </section>
@@ -94,13 +96,47 @@
             <div class="content-wrapper">
                 
 <div>
-    <p><strong>Status: To be done</strong></p>
-<p>The build category resources are explained here ..</p>
+    <h1 id="environments">Environments</h1>
+<p>An important part of creating a build pipeline is to define which resources are part of the
+build environment. In order to do that it is important to understand what is meant with the term
+<code>environment</code> as it refers to the resources in Calvinverse.</p>
+<p><img src="../assets/img/Environments.png" class="img-fluid" alt="Services separated by multiple environments" /></p>
+<blockquote class="blockquote">
+<p>An <strong>environment</strong> is a collection of resource instances and services that work together
+to achieve one or more goals, i.e. in this case to provide the ability to build, test and
+release software.</p>
+</blockquote>
+<p>There are several reasons to place resource instances and services inside an environment</p>
 <ul>
-<li>Build controller</li>
-<li>Build agents</li>
-<li>Artefact storage</li>
+<li>An environment forms a unit of separation between different services that do not need to contact
+each other while still allowing the resources to share an IP pool. This creates the possibility of
+having multiple groups of services, for instance production and a test environment.</li>
+<li>Resources inside an environment are referred to by a name that is unique only inside the
+environment. Two instances of a specific resource that live in different environments will be
+known, in each environment, by the same name. This means that tooling and services can be used
+in all environments without requiring any changes, thus enabling interchangability of services
+between environments, e.g. between a test and production environment.</li>
 </ul>
+<p>It should be noted that there are no immediate restrictions that stop services from contacting
+resources in a different environment, i.e. environments are a cooperative system. In order to
+actually block resources and services from reaching outside the environment additional networking
+restrictions need to be provided by routers and firewalls.</p>
+<p>An environment should have the following characteristics</p>
+<ul>
+<li>A way to group resources. A resource should 'know' which environment it belongs to. Note that
+'knowing' the environment basically means that a resource should easily be able to contact other
+resources in the environment while making it difficult to contact resources outside the
+environment. To a resource the environment should be the only thing around.</li>
+<li>One or more ways to push information into an environment. An environment isn't very useful if
+it cannot be provided with information in some way.</li>
+<li>One or more ways to get information out of an environment. As with inputs an environment is not
+very useful if no information can leave the environment.</li>
+</ul>
+<p>Calvinverse creates environments by using <a href="https://consul.io">Consul</a> to create environments by
+using the <a href="https://www.consul.io/docs/glossary.html#datacenter">datacenter</a> concept to define an
+environment. All services in a datacenter can communicate with each other either by using Consul as
+the <a href="https://www.consul.io/docs/agent/dns.html">DNS</a> resolver or by using more advanced
+<a href="https://www.consul.io/docs/connect/index.html">Connect</a> feature</p>
 
 </div>
 

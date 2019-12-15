@@ -1,177 +1,334 @@
-﻿<!DOCTYPE html>
+﻿
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-        <title>Calvinverse - Setup</title>
-        <link href="/assets/css/mermaid.css" rel="stylesheet">
-        <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
-        <script src="/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>        
-        <script src="/assets/js/app.min.js"></script>         
-        <script src="/assets/js/highlight.pack.js"></script>   
-        <script src="/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/assets/js/mermaid.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Calvinverse - Environment setup</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/scribbler-global.css" rel="stylesheet" />
+                <link href="/assets/css/scribbler-doc.css" rel="stylesheet" />
+
+        <meta name="application-name" content="Calvinverse" />
+        <meta name="msapplication-tooltip" content="Calvinverse" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Calvinverse - Environment setup" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://calvinverse.github.io/documentation/setup" />
+        <!-- TODO: More social graph meta tags -->
+
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-        <script src="/assets/js/html5shiv.min.js"></script>
-        <script src="/assets/js/respond.min.js"></script>
-        <![endif]-->  
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
 
-        
+        <!-- Our scripts -->
+<script src="/assets/js/script.js"></script><script src="/assets/js/scribbler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=GOOGLE_API_KEY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'GOOGLE_API_KEY');
+</script>
+-->
+
     </head>
-    <body class="hold-transition wyam layout-boxed  ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/" class="logo">
-                            <span>Calvinverse</span>
-                </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-right"></i>
-                        </a>
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
-                    </div>
-            
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/documentation">Documentation</a></li>
-        <li><a href="/resources">Resources</a></li>
-        <li><a href="/blog">Blog</a></li>
- 
-                        </ul>       
-                    </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
-            
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar ">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-        <div><p><a href="https://github.com/calvinverse/calvinverse.docs/tree/master/src/documentation/setup.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <body>
+        <nav>
+            <div class="logo"></div>
+            <div class="menu">
+                <ul>
+            <li class="inactive" >
+                <a href="/">Home</a>
+            </li>
+            <li class="active" >
+                Documentation
+            </li>
+            <li class="inactive" >
+                <a href="/resources">Resources</a>
+            </li>
+</ul>
+            </div>
+        </nav>
 
-                </section>
-                <section class="sidebar">                    
-                    
 
-                    <ul class="sidebar-menu">
-                        
+        <div class="wrapper">
+                    <!-- Left side column. contains the logo and sidebar -->
+                    <aside class="doc__nav">
+                        <section>
+                            
+                            
+                            <ul>
+
                 <li><a href="/documentation/about">About</a></li>
                 <li><a href="/documentation/configuration">Configuration</a></li>
-                <li><a href="/documentation/getting-started">Getting Started</a></li>
-                <li><a href="/documentation/how-to-build">How To Build</a></li>
-                <li class="selected"><a href="/documentation/setup">Setup</a></li>
+                <li class="selected"><a href="/documentation/setup">Environment setup</a></li>
+                <li><a href="/documentation/environments">Environments - What and why?</a></li>
+                <li><a href="/documentation/examples">Examples</a></li>
+                <li><a href="/documentation/getting-started">Getting started</a></li>
+                <li><a href="/documentation/how-to-build">How to build</a></li>
+                            </ul>
+                            
+                        </section>
+                    </aside>
 
-                    </ul>
-                </section>                
-            </aside>
-            
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 
-
-
-
-	<section class="content-header">
-		<h1>Setup</h1>
-	</section>
-	<section class="content">
-		<ul>
-<li>What does the base infrastructure look like
+<div>
+    <h1 id="setting-up-an-environment">Setting up an environment</h1>
+<p>An <a href="environments.html">environment</a> is defined by the <a href="https://consul.io">Consul</a> server instances,
+all the nodes that are connected to the server instances and the configurations of the nodes and
+services.</p>
+<h2 id="environment-core">Environment core</h2>
+<p>The first part of creating a new environment is to configure the Consul servers which form the
+core of the environment. The number of Consul servers is determined by the need to ensure
+<a href="https://www.consul.io/docs/internals/consensus.html">quorum</a> between the servers. Practically this
+means that there should be at <a href="https://www.consul.io/docs/internals/consensus.html#deployment-table">least three servers</a>
+but possibly five depending on the degree of fault tolerance required.</p>
+<p>Initially when starting a new environment you need to <a href="https://www.consul.io/docs/install/bootstrapping.html">bootstrap</a>
+Consul. In general it is sensible to set the number of server nodes that is
+<a href="https://www.consul.io/docs/agent/options.html#_bootstrap_expect">expected</a> which will allow Consul
+to automatically bootstrap itself when the desired number of server nodes have connected.</p>
+<p>One of the more difficult parts of creating an environment is to determine a way in which the
+nodes, server or client, can <a href="https://www.consul.io/docs/agent/options.html#retry-join">find the server nodes</a>.
+This requires that there is some way for Consul server nodes to identify themselves to a node that
+wants to join the cluster. Several options exist:</p>
 <ul>
-<li>Consul</li>
-<li>Nomad</li>
-<li>Vault</li>
-<li>Base images</li>
+<li>The simplest way is by making sure that the Consul server nodes always have a fixed set of
+IP addresses and then to get each node to try to connect to those addresses. From a performance
+perspective it makes sense to put the addresses most likely to be alive first in the
+configuration. This method is simple but does require that the Consul server nodes always get
+an IP allocated from the fixed pool of addresses. This can for instance be done by setting a
+static IP on those nodes or by setting a known MAC address in combination with DHCP rules.
+The obvious drawback is that it is harder to automate this method.</li>
+<li>A more complex but better method is to use known DNS names which are attached to the Consul hosts
+when they start. Nodes could obtain these via initial provisioning or a service on the node
+could request a free name from a pool when it starts up.</li>
+<li>Finally if you are in a cloud then you can use
+<a href="https://www.consul.io/docs/agent/cloud-auto-join.html">auto-join</a> method which uses information
+known to the cloud system to point to the server nodes.</li>
 </ul>
+<h2 id="initial-provisioning">Initial provisioning</h2>
+<p>In order to get the initial configuration into a resource instance Calvinverse assumes that for
+VMs an ISO image is attached to the VM when it is initially created. This ISO should contain files
+with the following information for Consul</p>
+<ul>
+<li><a href="https://www.consul.io/docs/agent/options.html#_datacenter">datacenter</a></li>
+<li><a href="https://www.consul.io/docs/agent/options.html#_domain">domain</a></li>
+<li><a href="https://www.consul.io/docs/agent/options.html#_encrypt">encrypt</a></li>
+<li><a href="https://www.consul.io/docs/agent/options.html#retry-join">retry_join</a></li>
+</ul>
+<p>Additionally for server nodes the following information is expected</p>
+<ul>
+<li><a href="https://www.consul.io/docs/agent/options.html#_bootstrap_expect">bootstrap_expect</a></li>
+<li><a href="https://www.consul.io/docs/agent/options.html#_server">server</a></li>
+</ul>
+<p>Finally the ISO also contains the
+<a href="https://github.com/Calvinverse/calvinverse.infrastructure/blob/master/config/iso/shared/unbound/unbound_zones.conf">zone configuration file</a>
+for <a href="https://nlnetlabs.nl/projects/unbound/about/">unbound</a>, which is the caching DNS resolver which
+is installed on all resources to handle DNS requests.</p>
+<p>The <a href="https://github.com/Calvinverse/calvinverse.infrastructure/tree/master/config/iso">Calvinverse.Infrastructure</a>
+repository provide an example of the different ISO files that will be made. From this repository
+three different ISO files will be created</p>
+<ul>
+<li>Consul server on Linux</li>
+<li>Consul client on Linux</li>
+<li>Consul client on Windows</li>
+</ul>
+<h2 id="configuration-of-services">Configuration of services</h2>
+<p><a href="configuration.html">Configurations</a> for all other services will be obtained from the
+<a href="https://www.consul.io/docs/agent/kv.html">Consul Key-Value store</a> via
+<a href="https://github.com/hashicorp/consul-template">Consul-Template</a>. Getting the configurations after
+the VM has connected to the Consul environment allows easily changing the configurations and it
+disconnects the configuration of the services from the provisioning of the resource.</p>
+<p>Again the <a href="https://github.com/Calvinverse/calvinverse.infrastructure/tree/master/config/kv">Calvinverse.Infrastructure</a>
+repository provides examples of the different configuration values that need to be set.
+For resource specific configuration information the readme for the different resource
+repositories provides the required information.</p>
+<h2 id="resources">Resources</h2>
+<p>With the provisioning and configuration information collected the final part of the setup is to
+create instances of the desired resources in the correct order.</p>
+<ol>
+<li>Determine which method of discovery is going to be used for Consul nodes to discover the server
+nodes, be that via IP address, DNS name or some other discovery method. If you plan to use
+either IP addresses or DNS names, decide them ahead of time. Then add those to the
+<a href="https://www.consul.io/docs/agent/options.html#retry-join">retry_join</a> entry in the Consul
+configuration file that is going to be included in the different
+<a href="https://github.com/Calvinverse/calvinverse.infrastructure/tree/master/config/iso">ISO</a> files.</li>
+<li>Determine the DNS name for the environment. This will later be pointed to the IP address, or
+addresses, of the reverse proxies. Thereby giving users access to the services provided by
+the environment via a single entrypoint instead of having to use the IP addresses of the
+individual instances.</li>
+<li>The first instances that should be created are for the <a href="https://github.com/Calvinverse/resource.hashi.server">Consul servers</a>.
+As indicated at least three virtual machines should be created from the virtual hard drives. The
+correct virtual machine settings are described in the readme for the repository. In order for an
+environment to form the server instances need to connect to each other.
+<ol>
+<li>Start a single instance and once it is started make sure that it either has a known IP
+address or a known DNS name. Make sure this is one of the IP addresses / DNS names that
+was decided on earlier on. Once the instance is available see that Consul is running. Note
+that it will not have elected itself as a leader because it should be expecting multiple
+servers before it will start acting as a server.</li>
+<li>Start the next instances one by one. Ensure that they connect to the other node via the
+<a href="https://www.consul.io/docs/commands/members.html"><code>consul members</code></a> command.</li>
+<li>Once the last server instance connects the Consul cluster will bootstrap itself and a leader
+will be elected. From this point on the Consul cluster will be active and ready to work.</li>
+</ol>
 </li>
-</ul>
+<li>Once the cluster is ready to work the next step is to upload K-V values. These can be pushed
+to the cluster via the <a href="https://www.consul.io/api/kv.html#create-update-key">KV store endpoints</a>
+that Consul provides.</li>
+<li>With the Consul servers up and running and the configuration values set in the KV store the next
+step is to create the resource instances that provide insight into the environment. These are
+the reverse proxies which allow services to be easily reached outside the environment and the
+Consul UI for checking the Consul cluster status.
+<ol>
+<li>Create one or more instances of the <a href="https://github.com/Calvinverse/resource.proxy.edge">reverse proxy</a>
+resource. The <a href="https://github.com/fabiolb/fabio">Fabio loadbalancer</a> does not automatically
+provide high availability, however it is fairly trivial to provide a DNS round-robin approach
+for high availability by pointing one DNS addres to the IP addresses of the reverse proxy
+instances. Once the first instance is provisioned you can find the UI for Fabio on
+<code>http://&lt;ENVIRONMENT_DNS_NAME&gt;:9998</code></li>
+<li>Create one or more instances of the <a href="https://github.com/Calvinverse/resource.hashi.ui">Consul UI</a>
+resource. Once the instance is provisioned the UI can be found on
+<code>http://&lt;ENVIRONMENT_DNS_NAME&gt;/dashboards/consul</code>.</li>
+</ol>
+</li>
+<li>Once the Consul server and the Consul management services are available the supporting services
+can be added to the environment. Supporting services that are optional are marked as such. If you
+have decided to not include those then you can skip those steps.
+<ol>
+<li>Create at least <a href="https://www.rabbitmq.com/clustering.html">three instances</a> of the
+<a href="https://github.com/Calvinverse/resource.queue">RabbitMQ</a> resource. The RabbitMQ
+<a href="https://www.rabbitmq.com/partitions.html">documentation</a> should help you decide how many
+instances you need for your purposes. In general an odd number of nodes is recommended with the
+minimum of three nodes for high availability. After the instances have been provisioned you
+can reach the management page via <code>http://&lt;ENVIRONMENT_DNS_NAME&gt;/services/queue</code>.</li>
+<li>Once the RabbitMQ cluster is up you can create the necessary <a href="https://www.rabbitmq.com/vhosts.html">vhosts</a>
+and <a href="https://www.rabbitmq.com/access-control.html">users</a>. The
+<a href="https://github.com/Calvinverse/calvinverse.infrastructure/blob/master/src/rabbitmq/create.md">Calvinverse.Infrastructure repository</a>
+provides a description of the minimum vhosts, users and queues that should be created.
+Make sure to create at least an administrator level user which will be used by
+<a href="https://vaultproject.io">Vault</a> to create temporary users in RabbitMQ for services to
+write to exchanges or read from queues in RabbitMQ.</li>
+<li>Create at least two instances of the <a href="https://github.com/Calvinverse/resource.secrets">Vault</a>
+resource.</li>
+<li>Once the Vault instances have been provisioned you can
+<a href="https://www.vaultproject.io/docs/commands/operator/init.html">initialize</a> one instance. This
+will provide a number of <a href="https://www.vaultproject.io/docs/concepts/seal.html">keys</a> of which
+a subset will be required to unseal the Vault instance. Note that initialization only needs
+to be done on a single node but all nodes need to be unsealed individually for them to be used.</li>
+<li>Once the vault instances are initialized and unsealed you can mount
+<a href="https://www.vaultproject.io/docs/secrets/index.html">secret engines</a> and set
+<a href="https://www.vaultproject.io/docs/concepts/policies.html">policies</a> which describe how the
+secret engines should be used. The minimum secret engines that should be mounted is the
+<a href="https://www.vaultproject.io/docs/secrets/rabbitmq/index.html">RabbitMQ</a> secret engine. Additionally
+at least one authentication method should be configured for authenticating users. The
+<a href="https://github.com/Calvinverse/calvinverse.infrastructure/tree/master/src/vault">Calvinverse.Infrastructure repository</a>
+provides scripts and configuration files to mount both the RabbitMQ secret engine and the
+<a href="https://www.vaultproject.io/docs/auth/ldap.html">LDAP</a> authentication method for user authentication.</li>
+</ol>
+</li>
+<li>Next deploy the metrics instances so that you can get information about the status of all your
+instances. Deploy the metrics instances in the following order:
+<ol>
+<li>First deploy an instance of the <a href="https://github.com/Calvinverse/resource.metrics.storage">InfluxDb</a>
+resource. Since the open source version doesn't allow H/A it is sensible to only deploy one
+instance.Once the instance has been provisioned and connected to the Consul cluster metrics
+should start streaming into the database.</li>
+<li>Deploy an instance of the <a href="https://github.com/Calvinverse/resource.metrics.dashboard">Grafana</a>
+resource. After provisioning the instance you can reach it on
+<code>http://&lt;ENVIRONMENT_DNS_NAME&gt;/dashboards/metrics</code>. Initially this instance will not have any
+dashboards. You can either make those manually or import them by pushing the
+<a href="https://github.com/Calvinverse/calvinverse.metrics.dashboards">dashboard definitions</a> to the
+Consul K-V from where they will automatically be provisioned with Grafana.</li>
+<li>Finally you can optionally deploy an instance of <a href="https://github.com/Calvinverse/resource.metrics.monitoring">Kapacitor and Chronograf</a>.
+These services provide alerting and a different way of displaying metrics information.</li>
+</ol>
+</li>
+<li>The last of the supporting services are the document and log processing services. These are used
+to process, store and display logs and other documents which are generated in the environment.
+Deploy these resources in the following order:
+<ol>
+<li>First deploy multiple instances of the <a href="https://github.com/Calvinverse/resource.documents.storage">Elasticsearch</a>
+resource. As with the other H/A resources you will need an odd number of instances with three
+being the minimum.</li>
+<li>Once the Elasticsearch cluster is running you can deploy a single instance of the
+<a href="https://github.com/Calvinverse/resource.documents.dashboard">Kibana</a> resource. Once provisioning
+is completed you can find it on <code>http://&lt;ENVIRONMENT_DNS_NAME&gt;/dashboards/documents</code>. The
+<a href="https://www.elastic.co/what-is/elasticsearch-monitoring">monitoring</a> tab in Kibana provides
+information about your Elasticsearch cluster.</li>
+<li>Finally you can deploy one or more instances of the <a href="https://github.com/Calvinverse/resource.logs.processor">Logstash</a>
+resource. You can have as many of these instances as you need to process all your logs. Log
+processing rules can be loaded into the Consul K-V from where they will be provided to the
+Logstash instances. For an example have a look at the
+<a href="https://github.com/Calvinverse/calvinverse.logs.filters">calvinverse.logs.filters</a> repository.</li>
+</ol>
+</li>
+<li>Finally the build instances can be added to the environment. The first instance that should be
+added is that of the <a href="https://github.com/Calvinverse/resource.build.master">Jenkins build controller</a>.</li>
+<li>Once the build controller has been provisioned, one or more
+<a href="https://github.com/Calvinverse/resource.build.agent.windows">build agents</a> can be provisioned.
+The agents will automatically connect to the build controller when they are provided with an
+authorization to connect to Vault, from where they will get the username and password to
+connect to the build controller.</li>
+<li>The final resource that can optionally be added is the <a href="https://github.com/Calvinverse/resource.artefacts">Nexus</a>
+resource which stores artefacts, packages and Docker image layers.</li>
+</ol>
 
-	</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
-        </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
-                <div>
-    <p>
-        Generated by <a href="https://wyam.io">Wyam</a> on Sat, 19 Aug 2017 19:03:53 GMT
-
- from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/99bf6a6e041f06fae38925fab90754194102b06d">99bf6a6e041f06fae38925fab90754194102b06d</a> at version 0.1.4.    </p>
 </div>
-            </footer>
-        </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
-            $(document).load(function() {
-                mermaid.initialize(
-                {
-                    flowchart:
-                    {
-                        htmlLabels: false,
-                        useMaxWidth:false
-                    }
-                });  
-                mermaid.init(undefined, ".mermaid")
-                $('svg').addClass('img-responsive');
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-            hljs.initHighlightingOnLoad();
 
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
-            });
-        </script>
+            </div>
+        </div>
+
+
+        <footer>
+            <div id="footer">
+    <div id="fbox1">
+        <h2>Related</h2>
+        <ul>
+            <li><a href="https://github.com/Calvinverse"><i class="fa fa-github"></i> GitHub</a></li>
+        </ul>
+    </div>
+    <div id="fbox2">
+        <h2 id="copyright">Copyright</h2>
+        <p>Copyright (c) 2019 <a href="/">Petrik van der Velde</a>. All rights reserved.</p>
+
+        <h2 id="disclaimer">Disclaimer</h2>
+        <p>The opinions expressed herein are my own personal opinions and do not represent my employer's view in any way.</p>
+    </div>
+    <div id="fbox3">
+        <h2 id="media">Media</h2>
+        <p><a href="/feed.rss"><img src="/assets/img/feed.png" alt="RSS feed"></a></p>
+    </div>
+</div>
+<div id="copyright">
+    <p>
+        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Sun, 15 Dec 2019 02:14:26 GMT
+
+ from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/888e58a4d3cc255f3e68735f7d00de6b33679860" class="link link--light">888e58a4d3cc255f3e68735f7d00de6b33679860</a> at version 0.1.5.    </p>
+</div>
+        </footer>
     </body>
 </html>

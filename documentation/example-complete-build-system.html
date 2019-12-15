@@ -6,7 +6,7 @@
         <meta name="description" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Calvinverse - Category Pipeline</title>
+        <title>Calvinverse - Example Complete Build System</title>
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <meta name="msapplication-tooltip" content="Calvinverse" />
         <meta name="msapplication-starturl" content="/" />
 
-        <meta property="og:title" content="Calvinverse - Category Pipeline" />
+        <meta property="og:title" content="Calvinverse - Example Complete Build System" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="http://calvinverse.github.io/resources/category-pipeline" />
+        <meta property="og:url" content="http://calvinverse.github.io/documentation/example-complete-build-system" />
         <!-- TODO: More social graph meta tags -->
 
 
@@ -61,11 +61,11 @@
             <li class="inactive" >
                 <a href="/">Home</a>
             </li>
-            <li class="inactive" >
-                <a href="/documentation">Documentation</a>
-            </li>
             <li class="active" >
-                Resources
+                Documentation
+            </li>
+            <li class="inactive" >
+                <a href="/resources">Resources</a>
             </li>
 </ul>
             </div>
@@ -80,11 +80,13 @@
                             
                             <ul>
 
-                <li><a href="/resources/build-controller">Build Controller</a></li>
-                <li><a href="/resources/category-base">Category Base</a></li>
-                <li><a href="/resources/category-diagnostics-logs">Category Diagnostics Logs</a></li>
-                <li class="selected"><a href="/resources/category-pipeline">Category Pipeline</a></li>
-                <li><a href="/resources/category-support">Category Support</a></li>
+                <li><a href="/documentation/about">About</a></li>
+                <li><a href="/documentation/configuration">Configuration</a></li>
+                <li><a href="/documentation/setup">Environment setup</a></li>
+                <li><a href="/documentation/environments">Environments - What and why?</a></li>
+                <li><a href="/documentation/examples">Examples</a></li>
+                <li><a href="/documentation/getting-started">Getting started</a></li>
+                <li><a href="/documentation/how-to-build">How to build</a></li>
                             </ul>
                             
                         </section>
@@ -94,12 +96,48 @@
             <div class="content-wrapper">
                 
 <div>
-    <p><strong>Status: To be done</strong></p>
-<p>The build category resources are explained here ..</p>
+    <p><strong>Status: Thoughts only, needs proper formatting</strong></p>
 <ul>
-<li>Build controller</li>
-<li>Build agents</li>
-<li>Artefact storage</li>
+<li>3 consul hosts</li>
+<li>1 Consul UI host</li>
+<li>2 Vault hosts</li>
+<li>3 RabbitMQ hosts</li>
+<li>3 Elastic search hosts</li>
+<li>1 Kibana host</li>
+<li>1+ logstash host</li>
+<li>1 Influx host</li>
+<li>1 Grafana host</li>
+<li>1 Jenkins host</li>
+<li>1+ Jenkins agent (potentially different OS's)</li>
+<li>1 Artefact server</li>
+<li>1 Proxy</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>There are a number of resources in this environment of which there are multiple. That is done
+so that there is some redundancy in the resources, i.e. if one fails there will still be enough
+to keep going. Note that some resources, e.g. consul hosts, elasticsearch hosts and rabbitmq hosts,
+should be deployed in uneven numbers to prevent <a href="">split brain</a> situations. For more specific
+information read the clustering guides for the respective applications</li>
+<li>It is wise to deploy the resources to different VM hosts so that a failure in one of the hosts
+does not lead to failures in the cluster</li>
+</ul>
+<h2 id="environments">Environments</h2>
+<ul>
+<li>Need at least two environments so that you can have one test environment.</li>
+<li>For some cases you want a third environment which is the one you use to build the resources
+so that resource creation / updates don't interfere with normal builds</li>
+</ul>
+<h2 id="repositories">Repositories</h2>
+<ul>
+<li>Need repositories for the code you want to build</li>
+<li>All configurations should be stored in one or more repositories. Need to configure these so that
+you can push configurations to the different environments so you can test configuration changes
+as well.
+<ul>
+<li>Some configurations are environment specific. Ideally have as few of these as possible</li>
+</ul>
+</li>
 </ul>
 
 </div>
