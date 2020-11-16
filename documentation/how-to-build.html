@@ -94,80 +94,195 @@
             <div class="content-wrapper">
                 
 <div>
-    <p><strong>Status: Thoughts only, needs proper formatting</strong></p>
-<p><a href="https://github.com/Calvinverse/calvinverse.docs/issues/8">Issue #9</a></p>
-<h1 id="how-to-build-the-resources">How to build the resources</h1>
-<p>To create one of the resources</p>
+    <h1 id="building-the-calvinverse-resources">Building the Calvinverse resources</h1>
+<p>The repositories in the <a href="https://github.com/Calvinverse">Calvinverse organization</a> are divided into
+image repositories, containing code for the creation of VM and Docker images, and configuration
+repositories, which contain some form of configuration information. The configuration repositories
+either create ZIP and ISO artefacts or they contain scripts that allow pushing data to the
+Consul key-value store in the environment.</p>
+<p>In order to execute builds that create artefacts of some kind you will for the very least need:</p>
 <ul>
-<li><p>The <a href="">NuGet command line executable</a> should be on the PATH</p>
-</li>
-<li><p>The <a href="">Git</a> executable should be on the PATH</p>
-</li>
-<li><p>MsBuild needs to be installed. Needs to be at least MsBuild 15 but higher is compatible</p>
-</li>
-<li><p>Need to have a storage place for ISO's and the resource files</p>
-</li>
-<li><p>Need a way to build things (i.e. a machine with a hypervisor)</p>
+<li>The <a href="https://www.nuget.org/downloads">NuGet command line executable</a> installed and available on
+the PATH.</li>
+<li>The <a href="https://git-scm.com/">Git</a> installed and available on the PATH.</li>
+<li><a href="https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2019">MsBuild</a> needs to be
+installed. This needs to be at least MsBuild 15.0 but higher should be compatible.</li>
+</ul>
+<p>Specific repository types may have additional demands on the environment they are build in. More details
+on these specific demands will be provided in the sections below.</p>
+<h2 id="building-vm-images">Building VM images</h2>
+<p>Most of the resources in Calvinverse are VM images although there are a few repositories
+containing code for Docker containers. There are currently two types of VM hypervisors supported,
+<a href="https://en.wikipedia.org/wiki/Microsoft_Azure">Azure</a> and <a href="https://en.wikipedia.org/wiki/Hyper-V">Hyper-V</a>.
+Since images are created with <a href="https://packer.io">Packer</a> it would be relatively easy to create
+images for AWS and other hypervisors.</p>
+<p>All VM resources are based on either one of the <a href="../resources/category-base.html">'base' images</a>,
+one for the <a href="https://github.com/Calvinverse/base.vm.linux">Linux</a> based resources and
+one for the <a href="https://github.com/Calvinverse/base.vm.windows">Windows</a> based resources.
+These base images consist of an operating system install combined with a number of default
+applications, e.g. <a href="https://consul.io">Consul</a> for service discovery,
+<a href="https://www.envoyproxy.io/">Envoy</a> for service mesh and
+<a href="https://www.influxdata.com/time-series-platform/telegraf/">Telegraf</a> for metrics collection.
+So in order to build any of the VM resources you will first have to build and store a copy of these
+base images.</p>
+<p>Additional prerequisites for building the virtual machine images are:</p>
 <ul>
-<li>For Hyper-V you need to configure a virtual switch that allows the VMS to get to the internet
-so that they can download all the required tooling. The name of this switch should be
-given to packer via the configuration so that Packer can connect the VM to the correct switch</li>
-<li>If the VMS are on their own ethernet interface then you can run into the Packer bug</li>
+<li><a href="https://www.ruby-lang.org/en/">Ruby</a> installed with the following <a href="https://www.chef.io/">Chef</a>
+gems
+<ul>
+<li><a href="https://rubygems.org/gems/berkshelf">berkshelf</a></li>
+<li><a href="https://rubygems.org/gems/bundler">bundler</a></li>
+<li><a href="https://rubygems.org/gems/chef">chef</a></li>
+<li><a href="https://rubygems.org/gems/chef-zero">chef-zero</a></li>
+<li><a href="https://rubygems.org/gems/chefspec">chefspec</a></li>
+<li><a href="https://rubygems.org/gems/foodcritic">foodcritic</a></li>
+<li><a href="https://rubygems.org/gems/rspec_junit_formatter">rspec_junit_formatter</a></li>
+<li><a href="https://rubygems.org/gems/rubocop">rubocop</a></li>
 </ul>
 </li>
-<li><p>Using <a href="https://packer.io">Packer</a> to create VMs. By default everything is configured to work
-with Hyper-V, but the Packer configuration can be adjusted to use a different hypervisor</p>
-</li>
-<li><p>Build the base resources first</p>
-</li>
 </ul>
-<p>Once all the tools are installed you can start the build process with the following command line</p>
-<pre><code>msbuild entrypoint.msbuild /t:build /P:IsoDirectory=&lt;PATH_TO_THE_APPROPRIATE_ISO_FILE&gt;
+<p>Once the base images are created you can start creating the VM images. To build an image you can
+invoke the following command line.</p>
+<pre><code>msbuild entrypoint.msbuild /t:build
 </code></pre>
+<p>Additional properties should be provided depending on the type of hypervisor, i.e. Hyper-V or Azure,
+you are targeting.</p>
+<p>Once the image has been created you can run a series of simple smoke tests to verify that the image
+is valid. In order to execute these tests invoke the following command line.</p>
+<pre><code>msbuild entrypoint.msbuild /t:test
+</code></pre>
+<p>This will deploy the image to your selected hypervisor, connect to the VM, execute the test scripts
+and finally delete the test VM.</p>
+<h3 id="building-azure-images">Building Azure images</h3>
+<p>When you are building images for Azure you will need, in addition to the standard application installs:</p>
 <ul>
-<li><p>How to build</p>
+<li>An Azure subscription into which the images can be created and stored.</li>
+<li>Credentials for Packer to use. The assumption is that a
+<a href="https://www.packer.io/docs/builders/azure#azure-active-directory-service-principal">service principal</a>
+will be used by specifying a client ID and the path to a client certificate.</li>
+<li>A <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal">resource group</a>
+into which the images will be placed once they are created. Note that in order to pull images
+created with another subscription you will have to use an
+<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/shared-image-galleries">image gallery</a>.</li>
+</ul>
+<p>In general building one of the images will take about 10 - 30 minutes depending on what is being
+installed in the image. So while the costs of creating images should be fairly small there will still
+be a cost, especially if you create lots of images.</p>
+<p>Once all the prerequisites have been satisfied you can start the build process with the following
+command line</p>
+<pre><code>msbuild entrypoint.msbuild /t:build
+  /P:ShouldCreateAzureImage=true
+  /P:AzureLocation=&lt;AZURE_LOCATION&gt;
+  /P:AzureClientId=&quot;&lt;AZURE_CLIENT_ID&gt;&quot;
+  /P:AzureClientCertPath=&quot;&lt;PATH_TO_CERT_FILE_FOR_AZURE_CLIENT&gt;&quot;
+  /P:AzureSubscriptionId=&quot;&lt;AZURE_SUBSCRIPTION_ID&gt;&quot;
+  /P:AzureImageResourceGroup=&quot;&lt;RESOURCE_GROUP_NAME&gt;&quot;
+</code></pre>
+<p>This command line applies to both the base images and the normal resource images. At the end of the
+build process the image will be placed in the selected resource group and the following tags will
+be applied</p>
 <ul>
-<li>Using <a href="">nBuildKit</a> and <a href="">ops-tools-build</a> for the build scripts</li>
-<li>Invoke the build generally with <code>msbuild entrypoint.msbuild /t:build</code> with additional properties</li>
-<li>Should drop outputs in <code>build/deploy</code>. Generally a zip file with the Hyper-V files</li>
-<li>Requirements
+<li><strong>category</strong> - The category of the image, generally the name of the image repository as set in the
+<code>ProductName</code> property in the <code>ops.props</code> MsBuild file in the root of the repository.</li>
+<li><strong>commit</strong> - The SHA1 of the GIT commit the image was created from.</li>
+<li><strong>createdby</strong> - Set to <code>packer</code> to indicate the image was created by Packer.</li>
+<li><strong>date</strong> - Set to the date the image was created.</li>
+<li><strong>stage</strong> - By default set to <code>qa</code> to indicate that the image is ready for QA.</li>
+<li><strong>version</strong> - The version of the image. Calculated using
+<a href="https://github.com/GitTools/GitVersion">GitVersion</a>, which bases the version number on the state
+of the GIT repository.</li>
+</ul>
+<p>To test the newly created image you can execute the following command line</p>
+<pre><code>msbuild entrypoint.msbuild /t:test
+  /P:ShouldCreateAzureImage=true
+  /P:AzureLocation=&lt;AZURE_LOCATION&gt;
+  /P:AzureClientId=&quot;&lt;AZURE_CLIENT_ID&gt;&quot;
+  /P:AzureClientCertPath=&quot;&lt;PATH_TO_CERT_FILE_FOR_AZURE_CLIENT&gt;&quot;
+  /P:AzureSubscriptionId=&quot;&lt;AZURE_SUBSCRIPTION_ID&gt;&quot;
+  /P:AzureImageResourceGroup=&quot;&lt;RESOURCE_GROUP_NAME&gt;&quot;
+  /P:AzureTestImageResourceGroup=&quot;&lt;TEST_RESOURCE_GROUP_NAME&gt;&quot;
+</code></pre>
+<p>This will create a new VM in Azure with the originally created image and then run a series of smoke
+tests. Note that if the tests pass a test image will be dropped in a resource group with the
+<code>TEST_RESOURCE_GROUP_NAME</code> name.These images should periodically be removed.</p>
+<h3 id="building-hyper-v-images">Building Hyper-V images</h3>
+<p>In order to build images for Hyper-V you will need the following additional prerequisites</p>
 <ul>
-<li>nuget.exe on the command line</li>
-<li>Hyper-V installed and the user is a Hyper-V admin</li>
-<li>Hyper-V switch with the correct name</li>
+<li>A Windows installation with Hyper-V installed. This can be either a server or a desktop version
+of Windows.</li>
+<li>A virtual switch which allows the VMs to get to the internet so that they can download all the
+required applications and packages. The name of this switch should be given to packer via the
+configuration so that Packer can connect the VM to the correct switch. The default value is set
+to <code>VM-LAN</code> and can be changed in the <code>packer.hyperv.props</code> MsBuild file.</li>
+<li>A directory in which the OS install ISO files are stored. These ISO files should be the ISO's used
+to install the desired OS, either Linux or Windows, on an empty VM. The ISO's will need to be
+suitable for unattended installs.</li>
+<li>A directory in which the base image artefact files are placed.</li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>How to test</p>
+<p>Once all the tools are installed you can start the build process of a base image with the following
+command line</p>
+<pre><code>msbuild entrypoint.msbuild /t:build
+  /P:ShouldCreateHypervImage=true
+  /P:IsoDirectory=&lt;PATH_TO_ISO_DIRECTORY&gt;
+</code></pre>
+<p>If you want to build a normal resource image then you should use the following command line</p>
+<pre><code>msbuild entrypoint.msbuild /t:build
+  /P:ShouldCreateHypervImage=true
+  /P:RepositoryArchive=&lt;PATH_TO_DIRECTORY_CONTAINING_BASE_IMAGE_ARTEFACTS&gt;
+</code></pre>
+<p>Once the build process completes it will place a ZIP artefact containing the Hyper-V files in the
+<code>build/deploy</code> directory of the workspace. To test the image that was created you can run the
+smoke tests by executing the following command line</p>
+<pre><code>msbuild entrypoint.msbuild /t:test
+  /P:ShouldCreateHypervImage=true
+</code></pre>
+<p>This assumes that the image artefacts will be available in the <code>build/deploy</code> directory in the
+workspace.</p>
+<h2 id="building-containers">Building containers</h2>
+<p>Some of the Calvinverse services are packaged in Docker containers. As with the virtual machine
+images, the Docker containers for these services are also created from a
+<a href="https://github.com/Calvinverse/base.container.linux">base image</a>. Once again this base container
+contains the default applications.</p>
+<p>In order to build these Docker images you will need the following additional prerequisites</p>
 <ul>
-<li>Smoke tests -&gt; <code>msbuild entrypoint.msbuild /t:test</code> -&gt; runs standard tests</li>
-<li>Deploy into an environment, run tests</li>
+<li>Machine with Docker on it. Currently all containers are Linux Docker containers so you can
+either have a Linux host machine or a Windows host machine with Linux containers.</li>
+<li>A Docker repository to upload the containers.</li>
 </ul>
-<h2 id="repositories">Repositories</h2>
-</li>
-<li><p>Configurations are stored in different repositories</p>
+<p>Once the prerequisites have been satisfied you can run the build by executing the following
+command line</p>
+<pre><code>msbuild entrypoint.msbuild /t:build
+  /P:DirConsulCertificates=&quot;&lt;LOCATION_OF_CONSUL_CERTIFICATE_BUNDLE&gt;&quot;
+</code></pre>
+<p>where <code>LOCATION_OF_CONSUL_CERTIFICATE_BUNDLE</code> points to a directory containing the
+<a href="https://learn.hashicorp.com/tutorials/consul/tls-encryption-secure">Consul certificate files</a>,
+specifically the <a href="https://learn.hashicorp.com/tutorials/consul/tls-encryption-secure#configure-the-clients">client certificate bundle</a></p>
+<p>Tags for the Docker containers can be specified in the <code>docker - pack</code> section of the
+<code>ops.artefacts.props</code> file.</p>
+<h2 id="building-configurations">Building configurations</h2>
+<p>The final set of repositories which may need to be build are the configuration repositories. When using Hyper-V as
+the hypervisor you will need to create a set of ISO files which contain the
+<a href="setup.html">initial provisioning files</a>. These files can be found in the
+<a href="https://github.com/Calvinverse/calvinverse.configuration/tree/master/config/iso">Calvinverse.Configuration</a> repository.
+In addition this repository also stores</p>
 <ul>
-<li>General configurations, mostly setting information for the different resources. While the environment
-is running will be stored in the Consul key-value store. The original values are stored in the
-<a href="">Calvinverse.Infrastructure</a> repository</li>
-<li>Dashboards</li>
-<li>Log filters</li>
-<li>Elasticsearch index templates</li>
+<li>The standard <a href="https://www.vaultproject.io/docs/secrets/index.html">secret engines</a> and
+<a href="https://www.vaultproject.io/docs/concepts/policies.html">policies</a> for <a href="https://vaultproject.io">vault</a>.</li>
+<li>A documentation file that describes which <a href="https://www.rabbitmq.com">RabbitMQ</a>
+<a href="https://www.rabbitmq.com/vhosts.html">vhosts</a> and <a href="https://www.rabbitmq.com/access-control.html">users</a> should
+be created.</li>
+<li>A documentation file that describes which users need to be created for InfluxDb.</li>
+<li>Examples and default values for the Consul Key-Value entries that are required.</li>
 </ul>
-</li>
-<li><p>Ideally builds will be configured so that a change to the configuration will be tested and pushed
-to a suitable test environment</p>
-</li>
-<li><p>Image repositories. Contain code to create the VM images. Work in progress to make them able to go
-to Azure if necessary</p>
+<p>The other configuration repositories store</p>
 <ul>
-<li>With some minor changes could also create images for AWS etc. Images are made using <a href="">Packer</a> so
-anything packer can create can be made</li>
+<li>The <a href="https://github.com/Calvinverse/calvinverse.metrics.dashboards">dashboards and datasources</a> for Grafana</li>
+<li>The <a href="https://github.com/Calvinverse/calvinverse.logs.filters">log filters</a> which are used by Logstash to process
+the logs that are created by all the different resources.</li>
 </ul>
-</li>
-</ul>
-<p>... More details on how to build things go here ...</p>
+<p>The configurations in these repositories can be applied to an environment by pushing the configuration files up to the
+Consul Key-Value store. These can be pushed up by using the <code>Set-ConsulKV.ps1</code> script in the
+<a href="https://github.com/Calvinverse/calvinverse.configuration">Calvinverse.Configuration</a> repository.</p>
 
 </div>
 
@@ -197,9 +312,9 @@ anything packer can create can be made</li>
 </div>
 <div id="copyright">
     <p>
-        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Fri, 30 Oct 2020 00:11:55 GMT
+        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Mon, 16 Nov 2020 09:37:10 GMT
 
- from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/7632eaa664ff8bd94efb26e8f2065b269e4c35ad" class="link link--light">7632eaa664ff8bd94efb26e8f2065b269e4c35ad</a> at version 0.1.7.    </p>
+ from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/be1b196c5a32b50884e644520cff6ffcfd48d2d0" class="link link--light">be1b196c5a32b50884e644520cff6ffcfd48d2d0</a> at version 0.1.8.    </p>
 </div>
         </footer>
     </body>
