@@ -78,11 +78,10 @@
                             
                             <ul>
 
-                <li><a href="/documentation/about">About</a></li>
-                <li><a href="/documentation/configuration">Configuration</a></li>
                 <li><a href="/documentation/setup">Environment setup</a></li>
                 <li><a href="/documentation/environments">Environments - What and why?</a></li>
-                <li><a href="/documentation/examples">Examples</a></li>
+                <li class="selected"><a href="/documentation/example-complete-build-system">Example - A complete environment</a></li>
+                <li><a href="/documentation/example-minimal-build-system">Example - A minimal environment</a></li>
                 <li><a href="/documentation/getting-started">Getting started</a></li>
                 <li><a href="/documentation/how-to-build">How to build</a></li>
                             </ul>
@@ -95,53 +94,60 @@
                 
 <div>
     <h1 id="example-a-complete-environment">Example - A complete environment</h1>
-<p><strong>Status: Thoughts only, needs proper formatting</strong></p>
+<p>A complete build environment provides the scalable build capacity as well as good
+observability. In order to create and maintain one of these environments for
+production purposes you will need to create at least two environments. The
+first one being the production environment, the second one a test environment in
+which you can verify that changes to the resources are suitable.</p>
+<p>Each of these environments should contain at least the following resources</p>
 <ul>
-<li>3 consul hosts</li>
-<li>1 Consul UI host</li>
-<li>2 Vault hosts</li>
-<li>3 RabbitMQ hosts</li>
-<li>3 Elastic search hosts</li>
-<li>1 Kibana host</li>
-<li>1+ logstash host</li>
-<li>1 Influx host</li>
-<li>1 Grafana host</li>
-<li>1 Jenkins host</li>
-<li>1+ Jenkins agent (potentially different OS's)</li>
-<li>1 Artefact server</li>
-<li>1 Proxy</li>
+<li><a href="https://github.com/Calvinverse/resource.hashi.server">Consul server instance</a> - Either
+three or five depending on the required degree of
+<a href="https://www.consul.io/docs/internals/consensus.html#deployment-table">fault tolerance</a></li>
+<li><a href="https://github.com/Calvinverse/resource.hashi.ui">Consul UI instance</a> - At least
+two instances for redundancy, although more instances may be added if desired</li>
+<li><a href="https://github.com/Calvinverse/resource.proxy.edge">Reverse proxy instance</a> - At least
+two instances for redundancy, although more instances may be added if desired</li>
+<li><a href="https://github.com/Calvinverse/resource.secrets">Vault instances</a> - Again at least
+two instances for redundancy, with more instances added if desired</li>
+<li><a href="https://github.com/Calvinverse/resource.queue">RabbitMQ instances</a> - At least
+<a href="https://www.rabbitmq.com/clustering.html">three instances</a> are required for a redundant
+cluster. If higher degrees of redundancy are required then follow the
+<a href="https://www.rabbitmq.com/partitions.html">documentation</a></li>
+<li><a href="https://github.com/Calvinverse/resource.documents.storage">Elasticsearch instances</a> -
+A cluster size of at least three instances is recommended for redundancy purposes. However
+the cluster might have to be larger for
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html">performance reasons</a></li>
+<li><a href="https://github.com/Calvinverse/resource.documents.dashboard">Kibana instances</a> - Currently
+only one instance per Elasticsearch cluster is supported. Providing a
+<a href="https://en.wikipedia.org/wiki/High_availability_software">cold standby</a> is recommended if
+small <a href="https://en.wikipedia.org/wiki/Mean_time_to_recovery">mean-time-to-recovery (MTTR)</a>
+is important for user log search</li>
+<li><a href="https://github.com/Calvinverse/resource.logs.processor">Logstash instances</a> - The number
+of these depends on the rate at which you want to process text documents. Start with two
+instances for redundancy and then add more as needed.</li>
+<li><a href="https://github.com/Calvinverse/resource.metrics.storage">InfluxDb instances</a> - Currently
+only one instance is supported due to the use of the open source version of Influx.</li>
+<li><a href="https://github.com/Calvinverse/resource.metrics.dashboard">Grafana instances</a> - Currently
+only one instance is supported because the
+<a href="https://grafana.com/docs/grafana/latest/administration/set-up-for-high-availability/">high availability</a>
+configurations have not been implemented at the moment</li>
+<li><a href="https://github.com/Calvinverse/resource.build.master">Jenkins build controller instances</a> - Currently
+only one instance is supported due to the fact that Jenkins does not support high availability
+configurations. A cold standby may be called for if a small MTTR is required.</li>
+<li><a href="https://github.com/Calvinverse/resource.build.agent.windows">Build agent instances</a> - As many as
+required to be able to process the required number of builds</li>
+<li><a href="https://github.com/Calvinverse/resource.artefacts">Nexus instances</a> - Currently only one instance
+is supported due to the fact that the open source version only supports a single instance</li>
 </ul>
-<p>Notes:</p>
-<ul>
-<li>There are a number of resources in this environment of which there are multiple. That is done
-so that there is some redundancy in the resources, i.e. if one fails there will still be enough
-to keep going. Note that some resources, e.g. consul hosts, elasticsearch hosts and rabbitmq hosts,
-should be deployed in uneven numbers to prevent <a href="">split brain</a> situations. For more specific
-information read the clustering guides for the respective applications</li>
-<li>It is wise to deploy the resources to different VM hosts so that a failure in one of the hosts
-does not lead to failures in the cluster
-<ul>
-<li>But they have to be in the same LAN otherwise latency starts creating issues.</li>
-</ul>
-</li>
-</ul>
-<h2 id="environments">Environments</h2>
-<ul>
-<li>Need at least two environments so that you can have one test environment.</li>
-<li>For some cases you want a third environment which is the one you use to build the resources
-so that resource creation / updates don't interfere with normal builds</li>
-</ul>
-<h2 id="repositories">Repositories</h2>
-<ul>
-<li>Need repositories for the code you want to build</li>
-<li>All configurations should be stored in one or more repositories. Need to configure these so that
-you can push configurations to the different environments so you can test configuration changes
-as well.
-<ul>
-<li>Some configurations are environment specific. Ideally have as few of these as possible</li>
-</ul>
-</li>
-</ul>
+<p>In this list you will note that there are a number of resources of which multiple instances need to
+be created. This is done so that there is some redundancy in the resources, i.e. if one fails there
+will still be enough to keep going. Some resources, e.g. Consul hosts, Elasticsearch hosts and
+RabbitMQ hosts, should be deployed in uneven numbers to prevent
+<a href="https://en.wikipedia.org/wiki/Split-brain_(computing)">split brain</a> situations. For more specific
+information read the clustering guides for the respective applications.</p>
+<p>Obviously for redundancy purposes it is wise to deploy the resources to different VM hosts so that
+a failure in one of the hosts does not lead to failures in the cluster.</p>
 
 </div>
 
@@ -171,9 +177,9 @@ as well.
 </div>
 <div id="copyright">
     <p>
-        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Mon, 16 Nov 2020 09:37:11 GMT
+        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Thu, 26 Nov 2020 09:08:57 GMT
 
- from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/be1b196c5a32b50884e644520cff6ffcfd48d2d0" class="link link--light">be1b196c5a32b50884e644520cff6ffcfd48d2d0</a> at version 0.1.8.    </p>
+ from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/acfc18858e38d7e90f3c79d03ba148613a5e36fb" class="link link--light">acfc18858e38d7e90f3c79d03ba148613a5e36fb</a> at version 0.1.9.    </p>
 </div>
         </footer>
     </body>
