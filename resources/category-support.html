@@ -6,7 +6,7 @@
         <meta name="description" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Calvinverse - Support resources</title>
+        <title>Calvinverse - Support</title>
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -21,7 +21,7 @@
         <meta name="msapplication-tooltip" content="Calvinverse" />
         <meta name="msapplication-starturl" content="/" />
 
-        <meta property="og:title" content="Calvinverse - Support resources" />
+        <meta property="og:title" content="Calvinverse - Support" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="http://calvinverse.github.io/resources/category-support" />
         <!-- TODO: More social graph meta tags -->
@@ -79,10 +79,10 @@
                             <ul>
 
                 <li><a href="/resources/category-base">Base resources</a></li>
-                <li><a href="/resources/build-controller">Build controller</a></li>
-                <li><a href="/resources/category-diagnostics-logs">Observability resources</a></li>
-                <li><a href="/resources/category-pipeline">Pipeline resources</a></li>
-                <li class="selected"><a href="/resources/category-support">Support resources</a></li>
+                <li><a href="/resources/category-observability-logs">Observability - Logs</a></li>
+                <li><a href="/resources/category-observability-metrics">Observability - Metrics</a></li>
+                <li><a href="/resources/category-pipeline">Pipeline</a></li>
+                <li class="selected"><a href="/resources/category-support">Support</a></li>
                             </ul>
                             
                         </section>
@@ -93,27 +93,49 @@
                 
 <div>
     <h1 id="support-resources">Support resources</h1>
-<p><strong>Status: To be done</strong></p>
-<p>Items in the support category provide supporting services (doh). They are:</p>
+<p>The support resources are the resources that perform a supporting role in the environment. Examples
+of this are <a href="https://vaultproject.io">Vault</a> for secure secret processing or
+<a href="https://www.rabbitmq.com/">RabbitMQ</a> for robust message queueing.</p>
+<p>The following repositories provide capabilities that improve the ability of the environment</p>
 <ul>
-<li><p>Consul cluster</p>
-</li>
-<li><p>HashiUI for consul</p>
-</li>
-<li><p>Vault cluster</p>
-</li>
-<li><p>Goldfish for Vault UI</p>
-</li>
-<li><p>InfluxDb: Metrics and alerting</p>
-</li>
-<li><p>Grafana</p>
-</li>
-<li><p>Elasticsearch, Logstash, Kibana: Log processing and storage</p>
-</li>
-<li><p>RabbitMQ: Distributed queue</p>
-</li>
-<li><p>File storage</p>
-</li>
+<li><a href="https://github.com/Calvinverse/resource.hashi.server">resource.hashi.server</a> - Contains the
+source code and Packer configuration files to create an image, for either Hyper-V or Azure, that
+contains an instance of the Consul application configured as server instance.</li>
+<li><a href="https://github.com/Calvinverse/resource.hashi.ui">resource.hashi.ui</a> - Contains the source code
+and Packer configuration files to create an image, for either Hyper-V or Azure, that contains an
+instance of Consul with the UI capability enabled.</li>
+<li><a href="https://github.com/Calvinverse/resource.proxy.edge">resource.proxy.edge</a> - Contains the source
+code and Packer configuration files to create an image, for either Hyper-V or Azure, that contains
+an instance of the Fabio load balancer.</li>
+<li><a href="https://github.com/Calvinverse/resource.secrets">resource.secrets</a> - Contains the source code and
+Packer configuration files to create an image, for either Hyper-V or Azure, that contains an
+instance of a Vault server.</li>
+<li><a href="https://github.com/Calvinverse/resource.queue">resource.queue</a> - Contains the source code and
+Packer configuration files to create an image, for either Hyper-V or Azure, that contains an
+instance of the RabbitMQ server.</li>
+</ul>
+<h2 id="environment-creation-support">Environment creation support</h2>
+<ul>
+<li><a href="https://github.com/Calvinverse/service.provisioning.controller">service.provisioning.controller</a> - Service for creating
+and configuring environments.</li>
+<li><a href="https://github.com/Calvinverse/service.provisioning.ui.web">service.provisioning.ui.web</a> - Contains the source code
+for a web service that displays the current environments and the images and settings that were used
+to create these environments.</li>
+</ul>
+<h3 id="azure">Azure</h3>
+<ul>
+<li><a href="https://github.com/Calvinverse/infrastructure.azure.network.spoke">infrastructure.azure.network.spoke</a> - Stores the
+configuration files to create a
+<a href="https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke">spoke network</a>
+which forms the basis of a Calvinverse environment in Azure.</li>
+<li><a href="https://github.com/Calvinverse/infrastructure.azure.core.servicediscovery">infrastructure.azure.core.servicediscovery</a> - Defines
+the configuration for the creation of a Consul service discovery cluster.</li>
+<li><a href="https://github.com/Calvinverse/infrastructure.azure.core.ingress">infrastructure.azure.core.ingress</a> - Defines the
+configuration for the creation of the ingress points for the environment.</li>
+<li><a href="https://github.com/Calvinverse/infrastructure.azure.core.secrets">infrastructure.azure.core.secrets</a> - Defines the
+configuration for the creation of a Vault cluster.</li>
+<li><a href="https://github.com/Calvinverse/infrastructure.azure.core.events">infrastructure.azure.core.events</a> - Defines
+the configuration for the creation of a RabbitMQ cluster for event handling in Calvinverse.</li>
 </ul>
 
 </div>
@@ -144,9 +166,9 @@
 </div>
 <div id="copyright">
     <p>
-        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Thu, 26 Nov 2020 09:08:57 GMT
+        Generated by <a href="https://wyam.io" class="link link--light">Wyam</a> on Sat, 12 Dec 2020 22:59:51 GMT
 
- from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/acfc18858e38d7e90f3c79d03ba148613a5e36fb" class="link link--light">acfc18858e38d7e90f3c79d03ba148613a5e36fb</a> at version 0.1.9.    </p>
+ from commit <a href="https://github.com/calvinverse/calvinverse.docs/tree/36352b4c52548cd360393a0d43281c7da5400e5c" class="link link--light">36352b4c52548cd360393a0d43281c7da5400e5c</a> at version 0.1.10.    </p>
 </div>
         </footer>
     </body>
